@@ -1,4 +1,6 @@
 #include "game_menu.h"
+#include "player.h"
+#include "database.h"
 
 game_menu::game_menu()
     : menu () {
@@ -40,6 +42,21 @@ int game_menu::get_input(){
 
 //================= FINISH GAME_MENU CLASS =============================
 
+/* Define how the player will work. This will decide the deck
+   and what AI will be used.  The parameter defines if this is
+   a human player or not.  */
+static Player define_player(bool);
+/* Choose which deck the human will use.  */
+static deck human_choose_deck();
+/* Choose which deck the computer will use.  */
+static deck computer_choose_deck();
+
+/* Main game loop, receives two players ready to play and runs
+   through every step of the turn and calls relevant functions.  */
+static void run_game_loop(Player, Player);
+
+//==================== FUNCTION DECLARATIONS ===========================
+
 void card_game_loop (){
     game_menu m;
     int c, selected = 0;
@@ -73,6 +90,10 @@ void card_game_loop (){
             case 0:
                 /* No option was selected.  */
                 break;
+            case 2:
+                /* Two player game was requested.  */
+                run_game_loop(define_player(true),
+                              define_player(true));
             default:
                 mvprintw(0,0, "Not yet implemented");
                 refresh();
@@ -80,4 +101,31 @@ void card_game_loop (){
         }
         selected = 0;
     }
+}
+
+Player define_player(bool human){
+    if(!human){
+        debug_assert("Not yet implemented");
+    } else {
+        /* Prepare the human player.  Ask the player for which deck he
+           wants to use.  */
+
+        return Player(human_choose_deck(), HUMAN);
+    }
+}
+
+deck human_choose_deck(){
+    /* TODO: This is just a placeholder for now.  An actual deck
+        choice should be implemented at some point.  */
+    return deck("goblin1", get_card_database());
+}
+
+deck computer_choose_deck(){
+    /* TODO: This is just a placeholder for now.  An actual deck
+        choice should be implemented at some point.  */
+    return deck("goblin1", get_card_database());
+}
+
+void run_game_loop(Player p1, Player p2) {
+    return;
 }
