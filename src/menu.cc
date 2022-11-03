@@ -76,8 +76,8 @@ void managed_menu::move_menu(int key){
 }
 
 int managed_menu::select_item(){
-    int selected = item_index(current_item(menu)) + 1;
+    size_t selected = item_index(current_item(menu)) + 1;
     if(selected == class_menu_items.size()) /* easy exit code */
         return -1;
-    return selected;
+    return (int)selected;
 }

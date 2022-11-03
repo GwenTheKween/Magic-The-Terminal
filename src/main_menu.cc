@@ -32,7 +32,7 @@ main_menu_info::main_menu_info()
     /* Starting the separated screens with logo.  Only start the logo window if
        there is enough space for it, otherwise store NULL as the window.  */
     getmaxyx(stdscr, y, x);
-    has_logo = (y > NUM_LINES_LOGO + options.size());
+    has_logo = (y > NUM_LINES_LOGO + (int)options.size());
     if(has_logo){
         windows[0] = newwin(NUM_LINES_LOGO, x, 0, 0);
         panels[0] = new_panel(windows[0]);

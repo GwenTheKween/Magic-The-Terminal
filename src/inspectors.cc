@@ -5,11 +5,11 @@
  * ========================================================================= */
 
 static int longest(std::vector<std::string> options){
-    int biggest = 0;
+    size_t biggest = 0;
     for(auto s:options){
         if(s.length() > biggest) biggest = s.length();
     }
-    return biggest;
+    return (int) biggest;
 }
 
 /* ========================================================================= 
@@ -24,7 +24,7 @@ inspector_menu::inspector_menu(int OG_width, int OG_height){
         "Exit"
     };
     bool fullsize = false;
-    if ((OG_height - 2) * 3 < options.size()*4) {
+    if ((OG_height - 2) * 3 < (int) options.size()*4) {
         /* if 75% of the OG_height is smaller than the amount of options from
            this menu, use the full screen size */
         fullsize = true;
